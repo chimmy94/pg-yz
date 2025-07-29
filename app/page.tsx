@@ -47,8 +47,9 @@ const features = [
 export default function PayGatewayLanding() {
   const [formData, setFormData] = useState({
     name: "",
+    telegram: "",
+    website: "",
     email: "",
-    company: "",
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -59,17 +60,25 @@ export default function PayGatewayLanding() {
     setIsSubmitting(true)
 
     try {
+      const data = {
+        name: formData.name,
+        telegram: formData.telegram,
+        website: formData.website,
+        email: formData.email,
+        message: formData.message,
+      }
+
       const response = await fetch("https://formspree.io/f/mqalbozd", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
       })
 
       if (response.ok) {
         setIsSubmitted(true)
-        setFormData({ name: "", email: "", company: "", message: "" })
+        setFormData({ name: "", telegram: "", website: "", email: "", message: "" })
       }
     } catch (error) {
       console.error("Form submission error:", error)
@@ -261,6 +270,17 @@ export default function PayGatewayLanding() {
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="Your company name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Website</label>
+                    <input
+                      type="text"
+                      name="website"
+                      value={formData.website}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="example.com or yoursite.net"
                     />
                   </div>
                   <div>
