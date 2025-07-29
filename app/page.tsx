@@ -12,16 +12,16 @@ declare global {
 }
 
 const countries = [
-  { name: "India", flag: "/flags/india.svg", wallet: "UPI, Paytm" },
-  { name: "Pakistan", flag: "/flags/pakistan.svg", wallet: "JazzCash, Easypaisa" },
-  { name: "Bangladesh", flag: "/flags/bangladesh.svg", wallet: "Nagad, bKash" },
-  { name: "Thailand", flag: "/flags/thailand.svg", wallet: "TrueMoney, Rabbit LINE Pay" },
-  { name: "Egypt", flag: "/flags/egypt.svg", wallet: "Vodafone Cash, Orange Money" },
-  { name: "Kenya", flag: "/flags/kenya.svg", wallet: "M-Pesa, Airtel Money" },
-  { name: "Tanzania", flag: "/flags/tanzania.svg", wallet: "M-Pesa, Tigo Pesa" },
-  { name: "Brazil", flag: "/flags/brazil.svg", wallet: "PIX, PicPay" },
-  { name: "Philippines", flag: "/flags/philippines.svg", wallet: "GCash, PayMaya" },
-  { name: "Vietnam", flag: "/flags/vietnam.svg", wallet: "MoMo, ZaloPay" },
+  { name: "India", flag: "🇮🇳", wallet: "UPI, Paytm" },
+  { name: "Pakistan", flag: "🇵🇰", wallet: "JazzCash, Easypaisa" },
+  { name: "Bangladesh", flag: "🇧🇩", wallet: "Nagad, bKash" },
+  { name: "Thailand", flag: "🇹🇭", wallet: "TrueMoney, Rabbit LINE Pay" },
+  { name: "Egypt", flag: "🇪🇬", wallet: "Vodafone Cash, Orange Money" },
+  { name: "Kenya", flag: "🇰🇪", wallet: "M-Pesa, Airtel Money" },
+  { name: "Tanzania", flag: "🇹🇿", wallet: "M-Pesa, Tigo Pesa" },
+  { name: "Brazil", flag: "🇧🇷", wallet: "PIX, PicPay" },
+  { name: "Philippines", flag: "🇵🇭", wallet: "GCash, PayMaya" },
+  { name: "Vietnam", flag: "🇻🇳", wallet: "MoMo, ZaloPay" },
 ]
 
 const features = [
@@ -58,61 +58,34 @@ export default function PayGatewayLanding() {
     website: "",
     email: "",
     message: "",
-    company: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   useEffect(() => {
-    // Load Google Translate script with proper error handling
-    const loadGoogleTranslate = () => {
-      // Check if already loaded
-      if (window.google && window.google.translate) {
-        initializeTranslate()
-        return
-      }
+    // Load Google Translate script
+    const script = document.createElement("script")
+    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    script.async = true
+    document.head.appendChild(script)
 
-      const script = document.createElement("script")
-      script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-      script.async = true
-      script.onerror = () => {
-        console.warn("Google Translate failed to load")
-      }
-
-      // Initialize Google Translate function
-      window.googleTranslateElementInit = () => {
-        try {
-          if (window.google && window.google.translate) {
-            new window.google.translate.TranslateElement(
-              {
-                pageLanguage: "en",
-                includedLanguages:
-                  "en,es,pt,fr,de,it,ru,ar,hi,zh,ja,ko,th,vi,id,ms,tr,fa,ur,bn,sw,am,yo,ig,ha,zu,xh,af,tl,my,km,lo,si,ne,ta,te,ml,kn,gu,pa,or,as,mr,sd,ps,ky,kk,uz,tg,mn,ka,hy,az,be,bg,bs,hr,cs,da,et,fi,gl,el,he,hu,is,ga,lv,lt,mk,mt,no,pl,ro,sk,sl,sq,sr,sv,uk,cy,eu,ca,co,eo,fy,gd,haw,hmn,ku,la,lb,mi,sm,gn,qu,st,sn,so,su,tl,yi,zu",
-                layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false,
-              },
-              "google_translate_element",
-            )
-          }
-        } catch (error) {
-          console.warn("Google Translate initialization failed:", error)
-        }
-      }
-
-      document.head.appendChild(script)
+    // Initialize Google Translate
+    window.googleTranslateElementInit = () => {
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          includedLanguages:
+            "en,es,pt,fr,de,it,ru,ar,hi,zh,ja,ko,th,vi,id,ms,tr,fa,ur,bn,sw,am,yo,ig,ha,zu,xh,af,tl,my,km,lo,si,ne,ta,te,ml,kn,gu,pa,or,as,mr,sd,ps,ky,kk,uz,tg,mn,ka,hy,az,be,bg,bs,hr,cs,da,et,fi,gl,el,he,hu,is,ga,lv,lt,mk,mt,no,pl,ro,sk,sl,sq,sr,sv,uk,cy,eu,ca,co,eo,fy,gd,haw,hmn,ku,la,lb,mi,sm,gn,qu,st,sn,so,su,tl,yi,zu",
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false,
+          gaTrack: true,
+          gaId: "UA-XXXXX-X",
+        },
+        "google_translate_element",
+      )
     }
-
-    const initializeTranslate = () => {
-      if (window.googleTranslateElementInit) {
-        window.googleTranslateElementInit()
-      }
-    }
-
-    // Load with a small delay to ensure DOM is ready
-    const timer = setTimeout(loadGoogleTranslate, 100)
 
     return () => {
-      clearTimeout(timer)
       // Cleanup
       const existingScript = document.querySelector('script[src*="translate.google.com"]')
       if (existingScript) {
@@ -132,7 +105,6 @@ export default function PayGatewayLanding() {
         website: formData.website,
         email: formData.email,
         message: formData.message,
-        company: formData.company,
       }
 
       const response = await fetch("https://formspree.io/f/mqalbozd", {
@@ -145,7 +117,7 @@ export default function PayGatewayLanding() {
 
       if (response.ok) {
         setIsSubmitted(true)
-        setFormData({ name: "", telegram: "", website: "", email: "", message: "", company: "" })
+        setFormData({ name: "", telegram: "", website: "", email: "", message: "" })
       }
     } catch (error) {
       console.error("Form submission error:", error)
@@ -274,13 +246,7 @@ export default function PayGatewayLanding() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {countries.map((country, index) => (
               <div key={index} className="bg-white p-4 rounded-lg shadow-md text-center">
-                <div className="w-12 h-9 mx-auto mb-2 flex items-center justify-center">
-                  <img
-                    src={country.flag || "/placeholder.svg"}
-                    alt={`${country.name} flag`}
-                    className="w-full h-full object-cover rounded"
-                  />
-                </div>
+                <div className="text-4xl mb-2">{country.flag}</div>
                 <h3 className="font-semibold text-gray-800 mb-1">{country.name}</h3>
                 <p className="text-sm text-gray-600">{country.wallet}</p>
               </div>
