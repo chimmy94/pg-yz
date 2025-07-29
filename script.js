@@ -22,6 +22,11 @@ function handleFormSubmit(event) {
   const formData = new FormData(form)
   const submitBtn = document.getElementById("submit-btn")
 
+  // Validate form
+  if (!validateForm(form)) {
+    return
+  }
+
   // Set loading state
   isSubmitting = true
   submitBtn.textContent = "Sending..."
@@ -31,8 +36,9 @@ function handleFormSubmit(event) {
   // Prepare data for Formspree
   const data = {
     name: formData.get("name"),
+    telegram: formData.get("telegram"),
+    website: formData.get("website"),
     email: formData.get("email"),
-    company: formData.get("company"),
     message: formData.get("message"),
   }
 
@@ -168,6 +174,15 @@ function validateForm(form) {
     }
   })
 
+  // Validate Telegram username format
+  const telegramField = form.querySelector('input[name="telegram"]')
+  if (telegramField && telegramField.value.trim()) {
+    const telegramValue = telegramField.value.trim()
+    if (!telegramValue.startsWith("@")) {
+      telegramField.value = "@" + telegramValue
+    }
+  }
+
   return isValid
 }
 
@@ -190,6 +205,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   })
+
+  // Auto-format Telegram username
+  const telegramInput = document.querySelector('input[name="telegram"]')
+  if (telegramInput) {
+    telegramInput.addEventListener("input", function () {
+      const value = this.value.trim()
+      if (value && !value.startsWith("@")) {
+        this.value = "@" + value
+      }
+    })
+  }
 })
 
 // Add loading animation for buttons

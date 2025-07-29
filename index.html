@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PayGateway - Payment Gateway for High-Risk Businesses</title>
     <meta name="description" content="Accept payments through local e-wallets and USDT across Asia, Africa, and Latin America. Perfect for forex, gaming, lending, and streaming businesses.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -29,10 +31,10 @@
             <div class="hero-content">
                 <div class="badge">Trusted by 10,000+ Businesses</div>
                 <h1 class="hero-title">
-                    Payment Gateway for <span class="text-blue">High-Risk Businesses</span>
+                    Beyond Traditional Cards: <span class="text-blue">Next-Gen Payment Solutions</span>
                 </h1>
                 <p class="hero-description">
-                    Accept payments through local e-wallets and USDT across Asia, Africa, and Latin America. Perfect for forex, gaming, lending, and streaming businesses.
+                    Skip the card payment limitations. Accept payments through local e-wallets and USDT across Asia, Africa, and Latin America. Perfect for forex, gaming, lending, and streaming businesses that need more than traditional payment methods.
                 </p>
                 <div class="hero-buttons">
                     <button onclick="scrollToContact()" class="btn btn-primary btn-large">
@@ -70,35 +72,98 @@
     <section class="features">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Why Choose PayGateway?</h2>
+                <h2 class="section-title">Why Choose Alternative Payment Methods?</h2>
                 <p class="section-description">
-                    We specialize in providing payment solutions for businesses that traditional gateways won't support
+                    While others focus on traditional card payments, we specialize in the payment methods your customers actually prefer
                 </p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
+                    <div class="feature-icon">🚫💳</div>
+                    <h3 class="feature-title">Beyond Card Limitations</h3>
+                    <p class="feature-description">No card payment restrictions or high decline rates. Focus on what works: local e-wallets and crypto</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
                     <h3 class="feature-title">High-Risk Business Support</h3>
                     <p class="feature-description">Specialized payment solutions for forex, gaming, lending, and streaming businesses</p>
                 </div>
                 <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
                     <h3 class="feature-title">Global Local Coverage</h3>
                     <p class="feature-description">Supporting 10+ countries across Asia, Africa, and Latin America</p>
                 </div>
                 <div class="feature-card">
+                    <div class="feature-icon">📱</div>
                     <h3 class="feature-title">Local E-Wallets</h3>
                     <p class="feature-description">Integration with popular local payment methods like M-Pesa, Nagad, GCash, and more</p>
                 </div>
                 <div class="feature-card">
+                    <div class="feature-icon">₿</div>
                     <h3 class="feature-title">USDT Support</h3>
                     <p class="feature-description">Accept cryptocurrency payments with USDT for global transactions</p>
                 </div>
                 <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
                     <h3 class="feature-title">Fast Settlement</h3>
                     <p class="feature-description">Quick payment processing and settlement for your business needs</p>
                 </div>
-                <div class="feature-card">
-                    <h3 class="feature-title">Business Growth</h3>
-                    <p class="feature-description">Scale your high-risk business with reliable payment infrastructure</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alternative Payment Methods Highlight -->
+    <section class="payment-methods">
+        <div class="container">
+            <div class="payment-methods-content">
+                <div class="payment-methods-text">
+                    <h2 class="payment-methods-title">Smart Businesses Choose Smart Payment Methods</h2>
+                    <p class="payment-methods-description">
+                        While traditional card payments face high fees, chargebacks, and restrictions for high-risk businesses, we focus on what actually works: local e-wallets and cryptocurrency. Your customers get familiar payment methods, you get reliable transactions.
+                    </p>
+                    <div class="payment-benefits">
+                        <div class="benefit-item">
+                            <span class="check-icon">✓</span>
+                            <span>No card payment restrictions</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="check-icon">✓</span>
+                            <span>Lower fees than traditional cards</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="check-icon">✓</span>
+                            <span>Reduced chargeback risk</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="check-icon">✓</span>
+                            <span>Higher approval rates</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment-methods-visual">
+                    <div class="payment-card traditional">
+                        <div class="payment-card-header">
+                            <span class="payment-icon">💳</span>
+                            <span class="payment-title">Traditional Cards</span>
+                        </div>
+                        <div class="payment-issues">
+                            <div class="issue">❌ High decline rates</div>
+                            <div class="issue">❌ Chargeback risks</div>
+                            <div class="issue">❌ High-risk restrictions</div>
+                        </div>
+                    </div>
+                    <div class="vs-arrow">VS</div>
+                    <div class="payment-card modern">
+                        <div class="payment-card-header">
+                            <span class="payment-icon">📱</span>
+                            <span class="payment-title">Our Solutions</span>
+                        </div>
+                        <div class="payment-benefits-visual">
+                            <div class="benefit">✅ Local e-wallets</div>
+                            <div class="benefit">✅ USDT crypto</div>
+                            <div class="benefit">✅ High-risk friendly</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,12 +259,16 @@
                             <input type="text" name="name" class="form-input" placeholder="Your full name" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Email Address *</label>
-                            <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                            <label class="form-label">Telegram Username *</label>
+                            <input type="text" name="telegram" class="form-input" placeholder="@yourusername" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Company Name</label>
-                            <input type="text" name="company" class="form-input" placeholder="Your company name">
+                            <label class="form-label">Website URL</label>
+                            <input type="url" name="website" class="form-input" placeholder="https://yourwebsite.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Message *</label>
@@ -245,11 +314,11 @@
                         <ul class="benefits-list">
                             <li class="benefit-item">
                                 <span class="check-icon">✓</span>
-                                <span>High-risk business friendly</span>
+                                <span>No traditional card payment limitations</span>
                             </li>
                             <li class="benefit-item">
                                 <span class="check-icon">✓</span>
-                                <span>Local payment methods</span>
+                                <span>Local payment methods preferred by customers</span>
                             </li>
                             <li class="benefit-item">
                                 <span class="check-icon">✓</span>
@@ -275,7 +344,7 @@
                     <span class="logo-text">PayGateway</span>
                 </div>
                 <p class="footer-description">
-                    Empowering high-risk businesses with reliable payment solutions across Asia, Africa, and Latin America.
+                    Empowering high-risk businesses with reliable payment solutions beyond traditional cards across Asia, Africa, and Latin America.
                 </p>
                 <div class="footer-links">
                     <button onclick="openTelegram()" class="footer-link">💬 Telegram</button>
