@@ -2,7 +2,14 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+
+declare global {
+  interface Window {
+    google: any
+    googleTranslateElementInit: () => void
+  }
+}
 
 const countries = [
   { name: "India", flag: "🇮🇳", wallet: "UPI, Paytm" },
@@ -54,6 +61,37 @@ export default function PayGatewayLanding() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+
+  useEffect(() => {
+    // Load Google Translate script
+    const script = document.createElement("script")
+    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    script.async = true
+    document.head.appendChild(script)
+
+    // Initialize Google Translate
+    window.googleTranslateElementInit = () => {
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          includedLanguages: "en,es,fr,de,it,pt,ru,ar,hi,zh,ja,ko,th,vi,id,ms,tr,fa,ur,bn",
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false,
+          gaTrack: true,
+          gaId: "UA-XXXXX-X",
+        },
+        "google_translate_element",
+      )
+    }
+
+    return () => {
+      // Cleanup
+      const existingScript = document.querySelector('script[src*="translate.google.com"]')
+      if (existingScript) {
+        existingScript.remove()
+      }
+    }
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -113,12 +151,15 @@ export default function PayGatewayLanding() {
             </div>
             <span className="text-2xl font-bold text-blue-600">PayGateway</span>
           </div>
-          <button
-            onClick={openTelegram}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            💬 Chat Now
-          </button>
+          <div className="flex items-center space-x-4">
+            <div id="google_translate_element" className="hidden md:block"></div>
+            <button
+              onClick={openTelegram}
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              💬 Chat Now
+            </button>
+          </div>
         </div>
       </header>
 
