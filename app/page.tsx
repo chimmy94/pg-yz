@@ -74,7 +74,8 @@ export default function PayGatewayLanding() {
       new window.google.translate.TranslateElement(
         {
           pageLanguage: "en",
-          includedLanguages: "en,es,fr,de,it,pt,ru,ar,hi,zh,ja,ko,th,vi,id,ms,tr,fa,ur,bn",
+          includedLanguages:
+            "en,es,pt,fr,de,it,ru,ar,hi,zh,ja,ko,th,vi,id,ms,tr,fa,ur,bn,sw,am,yo,ig,ha,zu,xh,af,tl,my,km,lo,si,ne,ta,te,ml,kn,gu,pa,or,as,mr,sd,ps,ky,kk,uz,tg,mn,ka,hy,az,be,bg,bs,hr,cs,da,et,fi,gl,el,he,hu,is,ga,lv,lt,mk,mt,no,pl,ro,sk,sl,sq,sr,sv,uk,cy,eu,ca,co,eo,fy,gd,haw,hmn,ku,la,lb,mi,sm,gn,qu,st,sn,so,su,tl,yi,zu",
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
           autoDisplay: false,
           gaTrack: true,
@@ -152,7 +153,7 @@ export default function PayGatewayLanding() {
             <span className="text-2xl font-bold text-blue-600">PayGateway</span>
           </div>
           <div className="flex items-center space-x-4">
-            <div id="google_translate_element" className="hidden md:block"></div>
+            <div id="google_translate_element" className="translate-widget"></div>
             <button
               onClick={openTelegram}
               className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
